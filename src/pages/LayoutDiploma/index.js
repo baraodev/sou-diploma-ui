@@ -18,37 +18,38 @@ const months = [
 ];
 class LayoutDiploma extends Component {
 	render() {
-		const { diploma, signatures, employees } = this.props;
-		return (
-			<div id="diploma">
+		const { diplomas } = this.props;
+		return diplomas.map((diploma) => (
+			<div id="diploma" key={diploma.RA}>
 				<div id="front">
 					<div className="content">
 						<p className="paragraph">
 							A presidente da <span>Universidade Virtual do Estado de São Paulo</span>,
 						</p>
 						<p className="paragraph -marginBottom">no uso de suas atribuições, confere a</p>
-						<h1 id="name">{diploma.name}</h1>
-						<p className="paragraph">de nacionalidade {diploma.nacionalidade},</p>
-						<p className="paragraph">portador da cédula de identidade RG {diploma.RG} SP,</p>
+						<h1 id="name">{diploma.nome_aluno}</h1>
+						<p className="paragraph">de nacionalidade {diploma.Nacionalidade},</p>
 						<p className="paragraph">
-							nascido em {diploma.birth_date ? diploma.birth_date.split('/')[0] : ''} de{' '}
-							{diploma.birth_date ? months[Number(diploma.birth_date.split('/')[1]) - 1] : ''} de{' '}
-							{diploma.birth_date ? diploma.birth_date.split('/')[2] : ''}
+							portador{diploma.gender === 'F' && 'a'} da cédula de identidade RG N° {diploma.RG} - SP,
 						</p>
-						<p className="paragraph">e natural do Estado de São Paulo,</p>
-						<p className="paragraph">o diploma do</p>
-						<h2 id="course">{diploma.course_name}</h2>
 						<p className="paragraph">
-							concluído em{' '}
-							{diploma.date_conclusion ? (
-								months[Number(diploma.date_conclusion.split('/')[1]) - 1]
-							) : (
-								''
-							)}{' '}
-							de {diploma.date_conclusion ? diploma.date_conclusion.split('/')[2] : ''}
+							nascido em {diploma.birth_date ? new Date(diploma.birth_date).getDate() : ''} de{' '}
+							{diploma.birth_date ? months[new Date(diploma.birth_date).getMonth()] : ''} de{' '}
+							{diploma.birth_date ? new Date(diploma.birth_date).getFullYear() : ''}  e natural do Estado
+							de {diploma.natural},
+						</p>
+						<p className="paragraph">o grau de</p>
+						<h2 id="course">
+							{diploma.gender === 'M' ? 'Licenciado' : 'Licenciada'} em {diploma.curso.split(' ')[2]}
+						</h2>
+						<p className="paragraph">
+							obtido em {diploma.data_conclusao ? diploma.data_conclusao.split('/')[2] : ''} {' '}
+							{diploma.data_conclusao ? months[Number(diploma.data_conclusao.split('/')[1]) - 1] : ''} de{' '}
+							{diploma.data_conclusao ? diploma.data_conclusao.split('/')[0] : ''} no curso de{' '}
+							{diploma.curso}
 						</p>
 						<p className="paragraph -marginBottom">
-							para que possa gozar dos direitos e prerrogativas legais.
+							para que possa gozar dos direitos e prerrogativas legais, outorga-lhe o presente diploma
 						</p>
 						<p className="paragraph">
 							São Paulo, {new Date().getDate()} de {months[new Date().getMonth()]} de{' '}
@@ -69,30 +70,29 @@ class LayoutDiploma extends Component {
 				</div>
 				<div id="back">
 					<div className="recognized">
-						<p className="paragraph">Reconhecido pela Portaria CEE/GP-491</p>
-						<p className="paragraph">de 27/09/2017, D.O.E de 27/09/2017</p>
+						<p className="paragraph">{diploma.Portaria}</p>
 					</div>
 					<div className="area">
 						<p className="university">Universidade Virtual do Estado de São Paulo - UNIVESP</p>
 						<p className="paragraph -marginBottom">Secretaria de Registro Acadêmico - SRA</p>
-						<p className="paragraph">Diploma registrado sob n° 13072501202200001</p>
-						<p className="paragraph">rótulo n° GR.L.LB.000001.2018.1ªVia.00001</p>
-						<p className="paragraph">processo n° 2017.2.00001.02</p>
+						<p className="paragraph">Diploma registrado sob n° {diploma.degree_number}</p>
+						<p className="paragraph">rótulo n° {diploma.degree_label}</p>
+						<p className="paragraph">processo n° {diploma.process_number}</p>
 						<p className="paragraph -marginBottom">nos termos do artigo 48 da lei 9.394, de 20/12/1996.</p>
 						<p className="paragraph">São Paulo, 03 de janeiro de 2019.</p>
 						<div className="signatures">
 							<p className="signature">
-								<span>{employees[0]}</span> {signatures[0]}
+								<span>&nbsp;</span> &nbsp;
 							</p>
 							<p className="paragraph">de acordo,</p>
 							<p className="signature">
-								<span>{employees[1]}</span> {signatures[1]}
+								<span>&nbsp;</span> &nbsp;
 							</p>
 						</div>
 					</div>
 				</div>
 			</div>
-		);
+		));
 	}
 }
 

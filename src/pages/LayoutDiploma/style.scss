@@ -1,135 +1,136 @@
 @media print {
-  @page {
-    size: landscape;
-    margin: 0mm;
-  }
-  #diploma {
-    width: 100%;
-    height: 100%;
-  }
+	@page {
+		size: landscape;
+		margin: 0mm;
+	}
+	#diploma {
+		width: 100%;
+		height: 100%;
+	}
 }
 
 @media only screen {
-  #diploma {
-    display: none;
-    &.show {
-      display: block;
-    }
-  }
+	#diploma {
+		display: none;
+		&.show {
+			display: block;
+		}
+	}
 }
 
 #diploma {
-  background-image: url(../../assets/imgs/diploma-icone.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-sizing: border-box;
-  font-family: 'Opens Sans', sans-serif;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  #front {
-    width: 100%;
-    height: 100%;
+	background-image: url(../../assets/imgs/diploma-icone.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-sizing: border-box;
+	font-family: 'Opens Sans', sans-serif;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	#front {
+		width: 100%;
+		height: 100%;
 
-    .content {
-      display: inline-block;
-      width: 800px;
-      text-align: center;
-      margin: 20% 0 0 20%;
+		.content {
+			display: inline-block;
+			width: 800px;
+			text-align: center;
+			margin: 20% 0 0 20%;
 
-      .paragraph {
-        margin: 0;
-        font-weight: 300;
-        font-size: 14px;
+			.paragraph {
+				margin: 0;
+				font-weight: 300;
+				font-size: 14px;
 
-        span {
-          font-weight: bold;
-        }
-        &.-marginBottom {
-          margin-bottom: 45px;
-        }
-      }
-      #name {
-        text-transform: uppercase;
-        font-size: 1.8rem;
-        margin: 20px 0;
-        color: #ed3b48;
-      }
-      #course {
-        display: block;
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin: 19px auto;
-        max-width: 550px;
-      }
-    }
+				span {
+					font-weight: bold;
+				}
+				&.-marginBottom {
+					margin-bottom: 45px;
+				}
+			}
+			#name {
+				text-transform: uppercase;
+				font-size: 1.8rem;
+				margin: 20px 0;
+				color: #ed3b48;
+			}
+			#course {
+				display: block;
+				font-size: 1.5rem;
+				font-weight: bold;
+				margin: 25px auto;
+				max-width: 550px;
+			}
+		}
 
-    .signatures {
-      display: flex;
-      page-break-after: always;
-      margin-top: 60px;
-      .signature {
-        width: 22%;
-        text-align: center;
-        border-top: 1px solid black;
-        span {
-          display: block;
-          font-weight: bold;
-        }
-        &:first-child {
-          margin-left: 18%;
-        }
-        &:not(:last-child) {
-          margin-right: 6%;
-        }
-      }
-    }
-  }
+		.signatures {
+			display: flex;
+			page-break-after: always;
+			margin-top: 60px;
+			.signature {
+				width: 22%;
+				text-align: center;
+				border-top: 1px solid black;
+				span {
+					display: block;
+					font-weight: bold;
+				}
+				&:first-child {
+					margin-left: 18%;
+				}
+				&:not(:last-child) {
+					margin-right: 6%;
+				}
+			}
+		}
+	}
 
-  #back {
-    width: 100%;
-    height: 100%;
-    padding: 5vh;
-    .university {
-      margin: 0;
-      font-weight: bold;
-    }
-    .paragraph {
-      margin: 0;
-      font-weight: 300;
-      &.-marginBottom {
-        margin-bottom: 10px;
-      }
-    }
-    .recognized {
-      margin-left: 70px;
-    }
-    .area {
-      display: inline-block;
-      border: 0.02px solid black;
-      margin-top: 70px;
-      margin-left: 50px;
-      padding: 1rem 2rem;
-      text-align: left;
-      .signatures {
-        display: flex;
-        flex-flow: column;
-        .signature {
-          text-align: center;
-          margin: auto;
-          width: 80%;
-          border-top: 1px solid black;
-          margin-top: 40px;
-          span {
-            display: block;
-            font-weight: bold;
-          }
-          &:first-of-type {
-            margin-bottom: 15px;
-          }
-        }
-      }
-    }
-  }
+	#back {
+		width: 100%;
+		height: 100%;
+		padding: 5vh;
+		.university {
+			margin: 0;
+			font-weight: bold;
+		}
+		.paragraph {
+			margin: 0;
+			font-weight: 300;
+			&.-marginBottom {
+				margin-bottom: 10px;
+			}
+		}
+		.recognized {
+			width: 250px;
+			margin-left: 70px;
+		}
+		.area {
+			display: inline-block;
+			border: 0.02px solid black;
+			margin-top: 70px;
+			margin-left: 50px;
+			padding: 1rem 2rem;
+			text-align: left;
+			.signatures {
+				display: flex;
+				flex-flow: column;
+				.signature {
+					text-align: center;
+					margin: auto;
+					width: 80%;
+					border-top: 1px solid black;
+					margin-top: 40px;
+					span {
+						display: block;
+						font-weight: bold;
+					}
+					&:first-of-type {
+						margin-bottom: 15px;
+					}
+				}
+			}
+		}
+	}
 }
