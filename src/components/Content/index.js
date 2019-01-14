@@ -18,6 +18,7 @@ import ResearchStudent from '../../pages/ResearchStudent';
 import Diploma from '../../pages/Diploma';
 import Alert from '../../pages/Alert';
 import AllInOne from '../../pages/AllInOne';
+import ValidateDiploma from '../../pages/ValidateDiploma';
 
 import Main from './styles';
 import Avaliations from '../../assets/imgs/avaliacoes.svg';
@@ -85,6 +86,7 @@ const Content = () => (
 								<Route path="/protocol" component={Protocol} />
 								<Route path="/alert" component={Alert} />
 								<Route path="/all-in-one" component={AllInOne} />
+								<Route path="/validate/:ra/:classId" component={ValidateDiploma} />
 								{/* <Route path="/alert/:id" component={Alert} /> */}
 								{/* class dsauhdhusahu extends Component {} */}
 								{/* this.props.match.params.id */}

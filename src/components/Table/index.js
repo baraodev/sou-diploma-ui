@@ -2,7 +2,6 @@ import React from 'react';
 import Pagination from 'react-js-pagination';
 
 import { Label, Checkbox, TableUI, Head, Row, Column, Body } from './styles';
-import Diploma from '../../pages/LayoutDiploma';
 
 const getLastSem = date => {
   const dateSplited = date.split('/');
@@ -28,7 +27,7 @@ const Table = ({ data, page, perPage, length, selectAll, handlePagination, handl
 			</Head>
 			<Body>
         {data[page].map(row => (
-          <Row>
+          <Row onClick={e => handleSelect(e, row.RA)}>
             <Column>{row.RA}</Column>
             <Column>{row.nome_aluno}</Column>
             <Column>{row.year_entry_sem}</Column>

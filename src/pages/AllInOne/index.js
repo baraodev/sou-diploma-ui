@@ -7,6 +7,7 @@ import Table from '../../components/Table';
 import Diploma from '../LayoutDiploma';
 
 import api from '../../services/diplomaApi';
+import apiUpdate from '../../services/api';
 
 import { Container, Button } from './styles';
 
@@ -20,7 +21,9 @@ class AllInOne extends Component {
 
 	componentDidMount() {
 		const { diplomas, perPage } = this.state;
-		api.get('v_print_list_temp').then((res) => this.setState({ diplomas: res.data }));
+		api.get(`v_print_list_temp?_size=100`).then((res) => {
+			this.setState({ diplomas: res.data });
+		});
 	}
 
 	handleSelectAll = ({ target }) => {
@@ -29,13 +32,12 @@ class AllInOne extends Component {
 			diplomas: diplomas.map((diploma) => ({ ...diploma, check: target.checked })),
 			selectAll: target.checked
 		});
-		console.log(this.state.diplomas);
 	};
 
 	handleSelect = ({ target }, ra) => {
 		const { diplomas } = this.state;
 		this.setState({
-			diplomas: diplomas.map((diploma) => (diploma.RA === ra ? { ...diploma, check: target.checked } : diploma))
+			diplomas: diplomas.map((diploma) => (diploma.RA === ra ? { ...diploma, check: !diploma.check } : diploma))
 		});
 	};
 
@@ -55,10 +57,21 @@ class AllInOne extends Component {
 	renderTrigger = () => {
 		// eslint-disable-line arrow-body-style
 		return (
-			<button className="selecionar" onClick={this.saveOnLocalStorage} type="button">
+			<button className="selecionar" type="button">
 				Imprimir
 			</button>
 		);
+	};
+
+	afterPrint = () => {
+		const { diplomas } = this.state;
+		const ras = diplomas.filter((diploma) => diploma.check).map((diploma) => diploma.RA);
+		apiUpdate
+			.patch('print-status', {
+				ras
+			})
+			.then((res) => console.log(res))
+			.catch((err) => console.error(err));
 	};
 
 	setRef = (ref) => {
@@ -80,7 +93,11 @@ class AllInOne extends Component {
 					handleSelect={this.handleSelect}
 					handleSelectAll={this.handleSelectAll}
 				/>
-				<ReactToPrint trigger={this.renderTrigger} content={this.renderContent} />
+				<ReactToPrint
+					trigger={this.renderTrigger}
+					content={this.renderContent}
+					onAfterPrint={this.afterPrint}
+				/>
 				<Diploma diplomas={diplomas.filter((item) => item.check)} ref={this.setRef} />
 			</Container>
 		);
